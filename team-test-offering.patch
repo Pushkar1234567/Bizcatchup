@@ -1,0 +1,29 @@
+diff --git a/bizcatchup_flutter/lib/constants/revenuecat.dart b/bizcatchup_flutter/lib/constants/revenuecat.dart
+index 0d090f3..592e850 100644
+--- a/bizcatchup_flutter/lib/constants/revenuecat.dart
++++ b/bizcatchup_flutter/lib/constants/revenuecat.dart
+@@ -22,6 +22,9 @@ class RevenueCat {
+   static const String proEntitlementID = "BizCatchUp Pro";
+   static const String teamEntitlementID = "BizCatchUp Team";
+ 
++  static const String testTeamId = "4THEeVOc857h4PFIJufH";
++  static const String testTeamOfferingID = "team_test";
++
+ 
+   // static const String proEntitlementID = "BizCatchUp Pro testing";
+   // static const String teamEntitlementID = "BizCatchUp Team testing";
+diff --git a/bizcatchup_flutter/lib/services/paywall_service.dart b/bizcatchup_flutter/lib/services/paywall_service.dart
+index 29675a6..91bef57 100644
+--- a/bizcatchup_flutter/lib/services/paywall_service.dart
++++ b/bizcatchup_flutter/lib/services/paywall_service.dart
+@@ -158,6 +158,10 @@ class PaywallService {
+     if (kIsWeb) return PaywallResult.notPresented;
+     try {
+       await _awaitIdentify();
++      if (offeringId == tierTeam &&
++          await Purchases.appUserID == RevenueCat.testTeamId) {
++        offeringId = RevenueCat.testTeamOfferingID;
++      }
+       final Offerings offerings = await Purchases.getOfferings();
+ 
+       // What RevenueCat actually returned. A paywall that will not open is

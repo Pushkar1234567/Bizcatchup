@@ -1,0 +1,7 @@
+.firebase/
+build/
+.dart_tool/
+Pods/
+node_modules/
+.next/
+scanner-stage-run/
